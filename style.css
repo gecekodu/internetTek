@@ -1,57 +1,118 @@
 body {
-  font-family: Arial;
   margin: 0;
-  background: #f4f4f4;
+  font-family: Arial;
+  text-align: center;
+  background: #eaf3ff;
 }
 
-/* Üst başlık */
-.header {
-  background: #409cd6;
+.ust {
+  background: #2b5d9a;
   color: white;
-  text-align: center;
-  padding: 30px;
+  padding: 15px;
 }
 
-/* Menü */
-.menu {
-  background: #408d91;
-  text-align: center;
+.ana {
+  padding: 20px;
+}
+
+#arama {
+  width: 60%;
+  max-width: 500px;
   padding: 10px;
+  margin-bottom: 15px;
 }
 
-.menu a {
+.kitap-btn {
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  background: #4d88cf;
   color: white;
-  text-decoration: none;
-  margin: 10px;
+  cursor: pointer;
 }
 
-/* İçerik */
-.content {
-  width: 80%;
-  margin: auto;
+.kontrol {
+  margin: 15px 0;
 }
 
-/* Kitap kutusu */
-.book {
+.kontrol button {
+  padding: 8px 14px;
+  border: none;
+  background: #2b5d9a;
+  color: white;
+  cursor: pointer;
+}
+
+.kitap-dis {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.kitap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 92%;
+  max-width: 1400px;
+  padding: 20px;
+  background: #d6e6fa;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #999;
+}
+
+.sayfa {
+  width: 48%;
+  height: 75vh;
+  max-height: 900px;
+  background: #fffdf7;
+  padding: 8px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 8px #ddd;
+}
+
+.sol {
+  border-radius: 12px 0 0 12px;
+}
+
+.sag {
+  border-radius: 0 12px 12px 0;
+}
+
+.orta-cizgi {
+  width: 18px;
+  height: 75vh;
+  max-height: 900px;
+  background: linear-gradient(to right, #9db8da, #eaf3ff, #9db8da);
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
   background: white;
-  margin: 20px 0;
-  padding: 15px;
-  border-radius: 8px;
 }
 
-/* Buton */
-.button {
-  background: #1a969f;
-  color: white;
-  padding: 8px 12px;
-  text-decoration: none;
-  border-radius: 5px;
-}
+@media (max-width: 900px) {
+  .kitap {
+    width: 95%;
+    padding: 12px;
+  }
 
-/* Alt kısım */
-.footer {
-  background: #0a2b30;
-  color: white;
-  text-align: center;
-  padding: 15px;
+  .sayfa {
+    width: 100%;
+    height: 70vh;
+  }
+
+  .sol {
+    border-radius: 12px;
+  }
+
+  .sag,
+  .orta-cizgi {
+    display: none;
+  }
+
+  #arama {
+    width: 90%;
+  }
 }

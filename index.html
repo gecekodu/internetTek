@@ -1,11 +1,53 @@
-<html>
+<!DOCTYPE html>
+<html lang="tr">
 <head>
-<title>Okuma Sayfası</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCÜ Bilgisayar Mühendisliği</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>OKUMA SAYFASI</h1>
-<p>Bu sitede dergi ve kitapları e-book şeklinde bulabilirsiniz.</p>
 
+  <div class="ust">
+    <h1>SCÜ Bilgisayar Mühendisliği</h1>
+    <p>Ders PDF Arşivi</p>
+  </div>
 
+  <div class="ana">
+    <input type="text" id="arama" placeholder="Ders ara...">
+
+    <div id="liste">
+      <button class="kitap-btn" data-pdf="pdf/veri_yapilari.pdf">Veri Yapıları</button>
+      <button class="kitap-btn" data-pdf="pdf/algoritmalar.pdf">Algoritmalar</button>
+      <button class="kitap-btn" data-pdf="pdf/isletim_sistemleri.pdf">İşletim Sistemleri</button>
+      <button class="kitap-btn" data-pdf="pdf/veritabani.pdf">Veritabanı</button>
+      <button class="kitap-btn" data-pdf="pdf/lineer_cebir.pdf">Lineer Cebir</button>
+    </div>
+
+    <h3 id="kitapAdi">PDF seçilmedi</h3>
+
+    <div class="kontrol">
+      <button id="geri">Geri</button>
+      <span id="sayfaBilgi">Sayfa: -</span>
+      <button id="ileri">İleri</button>
+    </div>
+
+    <div class="kitap-dis">
+      <div class="kitap">
+        <div class="sayfa sol">
+          <canvas id="solSayfa"></canvas>
+        </div>
+
+        <div class="orta-cizgi"></div>
+
+        <div class="sayfa sag">
+          <canvas id="sagSayfa"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
