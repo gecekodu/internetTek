@@ -6,7 +6,7 @@ body {
 
 /* Üst başlık */
 .header {
-  background: #2d6a4f;
+  background: #409cd6;
   color: white;
   text-align: center;
   padding: 30px;
@@ -14,7 +14,7 @@ body {
 
 /* Menü */
 .menu {
-  background: #40916c;
+  background: #408d91;
   text-align: center;
   padding: 10px;
 }
@@ -41,7 +41,7 @@ body {
 
 /* Buton */
 .button {
-  background: #2d6a4f;
+  background: #1a969f;
   color: white;
   padding: 8px 12px;
   text-decoration: none;
@@ -50,7 +50,7 @@ body {
 
 /* Alt kısım */
 .footer {
-  background: #1b4332;
+  background: #0a2b30;
   color: white;
   text-align: center;
   padding: 15px;
