@@ -1,0 +1,57 @@
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+/* Üst başlık */
+.header {
+  background: #2d6a4f;
+  color: white;
+  text-align: center;
+  padding: 30px;
+}
+
+/* Menü */
+.menu {
+  background: #40916c;
+  text-align: center;
+  padding: 10px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+}
+
+/* İçerik */
+.content {
+  width: 80%;
+  margin: auto;
+}
+
+/* Kitap kutusu */
+.book {
+  background: white;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Buton */
+.button {
+  background: #2d6a4f;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Alt kısım */
+.footer {
+  background: #1b4332;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
