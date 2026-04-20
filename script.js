@@ -27,6 +27,7 @@ arama.onkeyup = function () {
   Bu kısım AI yardımıyla yazıldı.
   PDF sayfalarını masaüstünde açık kitap gibi,
   küçük ekranda ise tek sayfa gibi göstermek için kullanılıyor.
+  ggggggggggggggggggggggggggggggggggggggggggggggggggg
 */
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -36,8 +37,8 @@ async function sayfaCiz(pdf, no, canvas) {
   let ctx = canvas.getContext("2d");
 
   if (no > pdf.numPages) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+        return;
   }
 
   let page = await pdf.getPage(no);
