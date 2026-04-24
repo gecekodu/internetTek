@@ -27,7 +27,7 @@ arama.onkeyup = function () {
   Bu kısım AI yardımıyla yazıldı.
   PDF sayfalarını masaüstünde açık kitap gibi,
   küçük ekranda ise tek sayfa gibi göstermek için kullanılıyor.
-  ggggggggggggggggggggggggggggggggggggggggggggggggggg
+  Selamunaleyküm
 */
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
