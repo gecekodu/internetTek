@@ -1,33 +1,38 @@
 const dersler = [
   {
+    ad: "Algoritma ve Programlama",
+    pdfler: [
+      { ad: "01 - Ders Detayları", dosya: "pdf/Algoritma ve Programlama/01 - Ders Detayları.pdf" },
+      { ad: "02 - TemelKavramlar ve Algoritmaya Giriş", dosya: "pdf/Algoritma ve Programlama/02 - TemelKavramlar ve Algoritmaya Giriş.pdf" },
+      { ad: "03 - SatırKod - AkışDiyagramları", dosya: "pdf/Algoritma ve Programlama/03 - SatırKod - AkışDiyagramları.pdf" },
+      { ad: "04 - SatırAlgoritmaAkışDiaygramları-Örnekler", dosya: "pdf/Algoritma ve Programlama/04 - SatırAlgoritmaAkışDiaygramları-Örnekler.pdf" }
+    ]
+  },
+  {
     ad: "İşletim Sistemleri",
     pdfler: [
       { ad: "B1", dosya: "pdf/İşletim Sistemleri/B1.pdf" },
       { ad: "B2", dosya: "pdf/İşletim Sistemleri/B2.pdf" },
       { ad: "B3", dosya: "pdf/İşletim Sistemleri/B3.pdf" },
-      { ad: "B4", dosya: "pdf/İşletim Sistemleri/B4.pdf" },
-      { ad: "B5", dosya: "pdf/İşletim Sistemleri/B5.pdf" },
-      { ad: "B6", dosya: "pdf/İşletim Sistemleri/B6.pdf" },
-      { ad: "B7", dosya: "pdf/İşletim Sistemleri/B7.pdf" },
-      { ad: "B8", dosya: "pdf/İşletim Sistemleri/B8.pdf" }
-    ]
-  },
-  {
-    ad: "Algoritmalar",
-    pdfler: [
-      { ad: "Algoritmalar", dosya: "pdf/algoritmalar.pdf" }
+      { ad: "B4", dosya: "pdf/İşletim Sistemleri/B4.pdf" }
     ]
   },
   {
     ad: "Bilgisayar Mimarisi",
     pdfler: [
-      { ad: "CH1", dosya: "pdf/Bilgisayar Mimarisi CH1.pdf" }
+      { ad: "CH1", dosya: "pdf/Bilgisayar Mimarisi/Bilgisayar Mimarisi CH1.pdf" },
+      { ad: "CH2", dosya: "pdf/Bilgisayar Mimarisi/Bilgisayar Mimarisi CH2.pdf" },
+      { ad: "CH4 Notlar", dosya: "pdf/Bilgisayar Mimarisi/Bilgisayar Mimarisi CH4_notlar.pdf" },
+      { ad: "CH5 Notlar", dosya: "pdf/Bilgisayar Mimarisi/Bilgisayar Mimarisi CH5_notlar.pdf" }
     ]
   },
   {
-    ad: "Lineer Cebir",
+    ad: "Nesne Tabanlı Analiz ve Tasarım",
     pdfler: [
-      { ad: "Lineer Cebir", dosya: "pdf/lineer_cebir.pdf.pdf" }
+      { ad: "1.1 - Nesne Tabanlı Düşünme", dosya: "pdf/Nesne Tabanlı Analiz ve Tasarım/1.1-Nesne Tabanlı Düşünme.pdf" },
+      { ad: "1.2 - Yazılım Sürecinde Tasarım", dosya: "pdf/Nesne Tabanlı Analiz ve Tasarım/1.2-Yazılım Sürecinde Tasarım.pdf" },
+      { ad: "1.3 - Kalite Nitelikleri için Tasarım", dosya: "pdf/Nesne Tabanlı Analiz ve Tasarım/1.3-Kalite Nitelikleri için Tasarım.pdf" },
+      { ad: "2 - Nesne tabanlı Modelleme", dosya: "pdf/Nesne Tabanlı Analiz ve Tasarım/2.Nesne tabanlı Modelleme.pdf" }
     ]
   }
 ];
@@ -125,9 +130,15 @@ async function zipIndir() {
 }
 
 function aramayiUygula() {
-  const metin = arama.value.toLowerCase();
+  const metin = arama.value.toLowerCase().trim();
   const filtreli = dersler.filter(function (ders) {
-    return ders.ad.toLowerCase().indexOf(metin) !== -1;
+    if (ders.ad.toLowerCase().indexOf(metin) !== -1) {
+      return true;
+    }
+
+    return ders.pdfler.some(function (pdf) {
+      return pdf.ad.toLowerCase().indexOf(metin) !== -1;
+    });
   });
 
   dersleriCiz(filtreli);
