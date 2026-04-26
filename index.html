@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCÜ Bilgisayar Mühendisliği</title>
+  <title>Bilgisayar Mühendisliği PDF Arşivi</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<<<<<<< HEAD
 
   <div class="ust">
     <h1>SCÜ Bilgisayar Mühendisliği</h1>
@@ -23,32 +24,31 @@
       <button class="kitap-btn" data-pdf="pdf/veritabani.pdf">Veritabanı</button> 
       <button class="kitap-btn" data-pdf="pdf/lineer_cebir.pdf">Lineer Cebir</button>
       
+=======
+  <main class="sayfa">
+    <div class="ust">
+      <img src="img/logo.png" alt="Logo" class="logo">
+      <h1>Bilgisayar Mühendisliği PDF Arşivi</h1>
+>>>>>>> de9a15a3066921a9b3409be40bbd327580183538
     </div>
 
-    <h3 id="kitapAdi">PDF seçilmedi</h3>
+    <input id="arama" type="search" placeholder="Ders veya PDF ara">
 
-    <div class="kontrol">
-      <button id="geri">Geri</button>
-      <span id="sayfaBilgi">Sayfa: -</span>
-      <button id="ileri">İleri</button>
-    </div>
+    <section>
+      <h2>Dersler</h2>
+      <div id="dersler" class="dersler"></div>
+    </section>
 
-    <div class="kitap-dis">
-      <div class="kitap">
-        <div class="sayfa sol">
-          <canvas id="solSayfa"></canvas>
-        </div>
-
-        <div class="orta-cizgi"></div>
-
-        <div class="sayfa sag">
-          <canvas id="sagSayfa"></canvas>
-        </div>
+    <section>
+      <div class="secimSatir">
+        <h2 id="seciliDers">Bir ders seçiniz</h2>
+        <button id="topluIndir" type="button" hidden>Toplu indir</button>
       </div>
-    </div>
-  </div>
+      <div id="pdfListe" class="pdfGrid"></div>
+    </section>
+  </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

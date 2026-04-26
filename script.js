@@ -1,114 +1,147 @@
-let arama = document.getElementById("arama");
-let butonlar = document.querySelectorAll(".kitap-btn");
-let kitapAdi = document.getElementById("kitapAdi");
-let bilgi = document.getElementById("sayfaBilgi");
-let geri = document.getElementById("geri");
-let ileri = document.getElementById("ileri");
-
-let solCanvas = document.getElementById("solSayfa");
-let sagCanvas = document.getElementById("sagSayfa");
-
-let pdfDosya = null;
-let sayfaNo = 1;
-
-arama.onkeyup = function () {
-  let yazi = arama.value.toLowerCase();
-
-  for (let i = 0; i < butonlar.length; i++) {
-    if (butonlar[i].textContent.toLowerCase().includes(yazi)) {
-      butonlar[i].style.display = "inline-block";
-    } else {
-      butonlar[i].style.display = "none";
-    }
+const dersler = [
+  {
+    ad: "İşletim Sistemleri",
+    pdfler: [
+      { ad: "B1", dosya: "pdf/İşletim Sistemleri/B1.pdf" },
+      { ad: "B2", dosya: "pdf/İşletim Sistemleri/B2.pdf" },
+      { ad: "B3", dosya: "pdf/İşletim Sistemleri/B3.pdf" },
+      { ad: "B4", dosya: "pdf/İşletim Sistemleri/B4.pdf" },
+      { ad: "B5", dosya: "pdf/İşletim Sistemleri/B5.pdf" },
+      { ad: "B6", dosya: "pdf/İşletim Sistemleri/B6.pdf" },
+      { ad: "B7", dosya: "pdf/İşletim Sistemleri/B7.pdf" },
+      { ad: "B8", dosya: "pdf/İşletim Sistemleri/B8.pdf" }
+    ]
+  },
+  {
+    ad: "Algoritmalar",
+    pdfler: [
+      { ad: "Algoritmalar", dosya: "pdf/algoritmalar.pdf" }
+    ]
+  },
+  {
+    ad: "Bilgisayar Mimarisi",
+    pdfler: [
+      { ad: "CH1", dosya: "pdf/Bilgisayar Mimarisi CH1.pdf" }
+    ]
+  },
+  {
+    ad: "Lineer Cebir",
+    pdfler: [
+      { ad: "Lineer Cebir", dosya: "pdf/lineer_cebir.pdf.pdf" }
+    ]
   }
-};
+];
 
+<<<<<<< HEAD
 /*
   Bu kısım AI yardımıyla yazıldı.
   PDF sayfalarını masaüstünde açık kitap gibi,
   küçük ekranda ise tek sayfa gibi göstermek için kullanılıyor.
   Selamunaleyküm
 */
+=======
+const derslerAlan = document.getElementById("dersler");
+const seciliDers = document.getElementById("seciliDers");
+const pdfListe = document.getElementById("pdfListe");
+const topluIndir = document.getElementById("topluIndir");
+const arama = document.getElementById("arama");
+>>>>>>> de9a15a3066921a9b3409be40bbd327580183538
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+let aktifDers = null;
 
-async function sayfaCiz(pdf, no, canvas) {
-  let ctx = canvas.getContext("2d");
+function pdfleriCiz(pdfler) {
+  pdfListe.innerHTML = "";
 
-  if (no > pdf.numPages) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); 
-        return;
-  }
+  pdfler.forEach(function (pdf) {
+    const kart = document.createElement("article");
+    const baslik = document.createElement("h3");
+    const iframe = document.createElement("iframe");
+    const link = document.createElement("a");
 
-  let page = await pdf.getPage(no);
-  let viewport = page.getViewport({ scale: 1.4 });
+    kart.className = "pdfKart";
 
-  canvas.width = viewport.width;
-  canvas.height = viewport.height;
+    baslik.textContent = pdf.ad;
 
-  await page.render({
-    canvasContext: ctx,
-    viewport: viewport
-  }).promise;
+    iframe.src = pdf.dosya;
+    iframe.title = pdf.ad;
+
+    link.textContent = "Yeni sekmede aç";
+    link.href = pdf.dosya;
+    link.target = "_blank";
+
+    kart.appendChild(baslik);
+    kart.appendChild(iframe);
+    kart.appendChild(link);
+    pdfListe.appendChild(kart);
+  });
 }
 
-async function goster() {
-  if (!pdfDosya) return;
+function aktifDersiAyarla(ders) {
+  aktifDers = ders;
+  seciliDers.textContent = ders ? ders.ad + " PDF'leri" : "Bir ders seçiniz";
+  topluIndir.hidden = !ders;
+  pdfleriCiz(ders ? ders.pdfler : []);
+}
 
-  if (window.innerWidth <= 900) {
-    await sayfaCiz(pdfDosya, sayfaNo, solCanvas);
-    bilgi.textContent = "Sayfa: " + sayfaNo;
+function dersleriCiz(liste) {
+  derslerAlan.innerHTML = "";
+
+  liste.forEach(function (ders) {
+    const btn = document.createElement("button");
+
+    btn.textContent = ders.ad;
+    btn.onclick = function () {
+      aktifDersiAyarla(ders);
+    };
+
+    derslerAlan.appendChild(btn);
+  });
+}
+
+async function zipIndir() {
+  if (!aktifDers) {
+    return;
+  }
+
+  const zip = new JSZip();
+
+  for (const pdf of aktifDers.pdfler) {
+    const yanit = await fetch(pdf.dosya);
+    const veri = await yanit.blob();
+    const dosyaAdi = pdf.dosya.split("/").pop() || (pdf.ad + ".pdf");
+    zip.file(dosyaAdi, veri);
+  }
+
+  const zipBlob = await zip.generateAsync({ type: "blob" });
+  const zipAdi = (aktifDers.ad || "pdfler") + ".zip";
+  const zipUrl = URL.createObjectURL(zipBlob);
+  const a = document.createElement("a");
+
+  a.href = zipUrl;
+  a.download = zipAdi;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(zipUrl);
+}
+
+function aramayiUygula() {
+  const metin = arama.value.toLowerCase();
+  const filtreli = dersler.filter(function (ders) {
+    return ders.ad.toLowerCase().indexOf(metin) !== -1;
+  });
+
+  dersleriCiz(filtreli);
+
+  if (filtreli.length > 0) {
+    aktifDersiAyarla(filtreli[0]);
   } else {
-    await sayfaCiz(pdfDosya, sayfaNo, solCanvas);
-    await sayfaCiz(pdfDosya, sayfaNo + 1, sagCanvas);
-    bilgi.textContent = "Sayfa: " + sayfaNo + " - " + (sayfaNo + 1);
+    aktifDersiAyarla(null);
   }
 }
 
-for (let i = 0; i < butonlar.length; i++) {
-  butonlar[i].onclick = async function () {
-    let dosya = this.getAttribute("data-pdf");
-    kitapAdi.textContent = this.textContent;
-    sayfaNo = 1;
+topluIndir.onclick = zipIndir;
+arama.oninput = aramayiUygula;
 
-    pdfDosya = await pdfjsLib.getDocument(dosya).promise;
-    goster();
-  };
-}
-
-ileri.onclick = function () {
-  if (!pdfDosya) return;
-
-  if (window.innerWidth <= 900) {
-    if (sayfaNo < pdfDosya.numPages) {
-      sayfaNo += 1;
-      goster();
-    }
-  } else {
-    if (sayfaNo + 2 <= pdfDosya.numPages) {
-      sayfaNo += 2;
-      goster();
-    }
-  }
-};
-
-geri.onclick = function () {
-  if (!pdfDosya) return;
-
-  if (window.innerWidth <= 900) {
-    if (sayfaNo > 1) {
-      sayfaNo -= 1;
-      goster();
-    }
-  } else {
-    if (sayfaNo - 2 >= 1) {
-      sayfaNo -= 2;
-      goster();
-    }
-  }
-};
-
-window.onresize = function () {
-  goster();
-};
+dersleriCiz(dersler);
+aktifDersiAyarla(dersler[0]);
