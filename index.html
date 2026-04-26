@@ -8,17 +8,12 @@
 </head>
 <body>
   <main class="sayfa">
-    <header class="ust">
-      <img src="img/logo.png" alt="Site logosu" class="logo">
-      <div>
-        <h1>Bilgisayar Mühendisliği PDF Arşivi</h1>
-        <p>Dersi seçin, PDF'ler iki sütunda ve sayfa içinde açılsın.</p>
-      </div>
-    </header>
+    <div class="ust">
+      <img src="img/logo.png" alt="Logo" class="logo">
+      <h1>Bilgisayar Mühendisliği PDF Arşivi</h1>
+    </div>
 
-    <section class="aramaBolum">
-      <input id="arama" type="search" placeholder="Ders veya PDF ara">
-    </section>
+    <input id="arama" type="search" placeholder="Ders veya PDF ara">
 
     <section>
       <h2>Dersler</h2>
@@ -26,11 +21,15 @@
     </section>
 
     <section>
-      <h2 id="seciliDers">Bir ders seçiniz</h2>
+      <div class="secimSatir">
+        <h2 id="seciliDers">Bir ders seçiniz</h2>
+        <button id="topluIndir" type="button" hidden>Toplu indir</button>
+      </div>
       <div id="pdfListe" class="pdfGrid"></div>
     </section>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

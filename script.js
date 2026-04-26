@@ -35,36 +35,15 @@ const dersler = [
 const derslerAlan = document.getElementById("dersler");
 const seciliDers = document.getElementById("seciliDers");
 const pdfListe = document.getElementById("pdfListe");
+const topluIndir = document.getElementById("topluIndir");
 const arama = document.getElementById("arama");
 
-let aktifDers = dersler[0];
+let aktifDers = null;
 
-function dersFiltrele(aramaMetni) {
-  return dersler.filter(function (ders) {
-    const dersAdi = ders.ad.toLowerCase();
-    const pdfEslesti = ders.pdfler.some(function (pdf) {
-      const metin = (pdf.ad + " " + pdf.dosya).toLowerCase();
-      return metin.indexOf(aramaMetni) !== -1;
-    });
-
-    return dersAdi.indexOf(aramaMetni) !== -1 || pdfEslesti;
-  });
-}
-
-function pdfleriCiz(pdfler, aramaMetni) {
+function pdfleriCiz(pdfler) {
   pdfListe.innerHTML = "";
 
-  const filtreliPdfler = pdfler.filter(function (pdf) {
-    const metin = (pdf.ad + " " + pdf.dosya).toLowerCase();
-    return metin.indexOf(aramaMetni) !== -1;
-  });
-
-  if (filtreliPdfler.length === 0) {
-    pdfListe.innerHTML = '<p class="bosMesaj">Sonuç bulunamadı.</p>';
-    return;
-  }
-
-  filtreliPdfler.forEach(function (pdf) {
+  pdfler.forEach(function (pdf) {
     const kart = document.createElement("article");
     const baslik = document.createElement("h3");
     const iframe = document.createElement("iframe");
@@ -80,7 +59,6 @@ function pdfleriCiz(pdfler, aramaMetni) {
     link.textContent = "Yeni sekmede aç";
     link.href = pdf.dosya;
     link.target = "_blank";
-    link.rel = "noopener";
 
     kart.appendChild(baslik);
     kart.appendChild(iframe);
@@ -89,78 +67,72 @@ function pdfleriCiz(pdfler, aramaMetni) {
   });
 }
 
-function dersleriCiz() {
+function aktifDersiAyarla(ders) {
+  aktifDers = ders;
+  seciliDers.textContent = ders ? ders.ad + " PDF'leri" : "Bir ders seçiniz";
+  topluIndir.hidden = !ders;
+  pdfleriCiz(ders ? ders.pdfler : []);
+}
+
+function dersleriCiz(liste) {
   derslerAlan.innerHTML = "";
 
-  dersler.forEach(function (ders) {
+  liste.forEach(function (ders) {
     const btn = document.createElement("button");
 
     btn.textContent = ders.ad;
     btn.onclick = function () {
-      aktifDers = ders;
-      seciliDers.textContent = ders.ad + " PDF'leri";
-      pdfleriCiz(ders.pdfler, arama.value.trim().toLowerCase());
-
-      document.querySelectorAll("#dersler button").forEach(function (b) {
-        b.classList.remove("aktif");
-      });
-      btn.classList.add("aktif");
+      aktifDersiAyarla(ders);
     };
 
     derslerAlan.appendChild(btn);
   });
 }
 
-arama.addEventListener("input", function () {
-  const arananMetin = arama.value.trim().toLowerCase();
-  const eslesenDersler = dersFiltrele(arananMetin);
-
-  derslerAlan.innerHTML = "";
-
-  if (arananMetin === "") {
-    dersleriCiz();
-    document.querySelector("#dersler button").click();
+async function zipIndir() {
+  if (!aktifDers) {
     return;
   }
 
-  eslesenDersler.forEach(function (ders) {
-    const btn = document.createElement("button");
+  const zip = new JSZip();
 
-    btn.textContent = ders.ad;
-    btn.onclick = function () {
-      aktifDers = ders;
-      seciliDers.textContent = ders.ad + " PDF'leri";
-      pdfleriCiz(ders.pdfler, arananMetin);
+  for (const pdf of aktifDers.pdfler) {
+    const yanit = await fetch(pdf.dosya);
+    const veri = await yanit.blob();
+    const dosyaAdi = pdf.dosya.split("/").pop() || (pdf.ad + ".pdf");
+    zip.file(dosyaAdi, veri);
+  }
 
-      document.querySelectorAll("#dersler button").forEach(function (b) {
-        b.classList.remove("aktif");
-      });
-      btn.classList.add("aktif");
-    };
+  const zipBlob = await zip.generateAsync({ type: "blob" });
+  const zipAdi = (aktifDers.ad || "pdfler") + ".zip";
+  const zipUrl = URL.createObjectURL(zipBlob);
+  const a = document.createElement("a");
 
-    derslerAlan.appendChild(btn);
+  a.href = zipUrl;
+  a.download = zipAdi;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(zipUrl);
+}
+
+function aramayiUygula() {
+  const metin = arama.value.toLowerCase();
+  const filtreli = dersler.filter(function (ders) {
+    return ders.ad.toLowerCase().indexOf(metin) !== -1;
   });
 
-  if (eslesenDersler.length > 0) {
-    aktifDers = eslesenDersler[0];
-    seciliDers.textContent = aktifDers.ad + " PDF'leri";
+  dersleriCiz(filtreli);
 
-    document.querySelectorAll("#dersler button").forEach(function (b) {
-      b.classList.remove("aktif");
-    });
-
-    const ilkButon = document.querySelector("#dersler button");
-    if (ilkButon) {
-      ilkButon.classList.add("aktif");
-    }
-
-    pdfleriCiz(aktifDers.pdfler, arananMetin);
-    return;
+  if (filtreli.length > 0) {
+    aktifDersiAyarla(filtreli[0]);
+  } else {
+    aktifDersiAyarla(null);
   }
+}
 
-  seciliDers.textContent = "Sonuç bulunamadı";
-  pdfListe.innerHTML = '<p class="bosMesaj">Sonuç bulunamadı.</p>';
-});
+topluIndir.onclick = zipIndir;
+arama.oninput = aramayiUygula;
 
-dersleriCiz();
-document.querySelector("#dersler button").click();
+dersleriCiz(dersler);
+aktifDersiAyarla(dersler[0]);
