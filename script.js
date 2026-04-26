@@ -32,20 +32,19 @@ const dersler = [
   }
 ];
 
-<<<<<<< HEAD
+
 /*
   Bu kısım AI yardımıyla yazıldı.
   PDF sayfalarını masaüstünde açık kitap gibi,
   küçük ekranda ise tek sayfa gibi göstermek için kullanılıyor.
   Selamunaleyküm
 */
-=======
+
 const derslerAlan = document.getElementById("dersler");
 const seciliDers = document.getElementById("seciliDers");
 const pdfListe = document.getElementById("pdfListe");
 const topluIndir = document.getElementById("topluIndir");
 const arama = document.getElementById("arama");
->>>>>>> de9a15a3066921a9b3409be40bbd327580183538
 
 let aktifDers = null;
 
