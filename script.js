@@ -45,6 +45,56 @@ const dersler = [
   Selamunaleyküm
 */
 
+// MENÜ KONTROLÜ
+const menuButon = document.getElementById("menuButon");
+const menu = document.getElementById("menu");
+const kapatButon = document.getElementById("kapatButon");
+
+menuButon.addEventListener("click", function() {
+  menu.classList.add("acik");
+});
+
+kapatButon.addEventListener("click", function() {
+  menu.classList.remove("acik");
+});
+
+// Menü dışında tıklandığında menüyü kapat
+document.addEventListener("click", function(event) {
+  if (!menu.contains(event.target) && !menuButon.contains(event.target)) {
+    menu.classList.remove("acik");
+  }
+});
+
+// SLİDER KONTROLÜ
+const sliderPrev = document.getElementById("sliderPrev");
+const sliderNext = document.getElementById("sliderNext");
+const slides = document.querySelectorAll(".slide");
+let slideIndex = 0;
+
+function sliderGöster(index) {
+  // Tüm slide'ları gizle
+  slides.forEach(slide => slide.classList.remove("acik-slide"));
+  
+  // Seçilen slide'ı göster
+  slides[index].classList.add("acik-slide");
+}
+
+sliderNext.addEventListener("click", function() {
+  slideIndex = (slideIndex + 1) % slides.length;
+  sliderGöster(slideIndex);
+});
+
+sliderPrev.addEventListener("click", function() {
+  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+  sliderGöster(slideIndex);
+});
+
+// Otomatik slider (5 saniye)
+setInterval(function() {
+  slideIndex = (slideIndex + 1) % slides.length;
+  sliderGöster(slideIndex);
+}, 5000);
+
 const derslerAlan = document.getElementById("dersler");
 const seciliDers = document.getElementById("seciliDers");
 const pdfListe = document.getElementById("pdfListe");

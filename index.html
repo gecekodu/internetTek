@@ -7,10 +7,45 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- MENÜ BUTON -->
+  <button class="menuButon" id="menuButon">☰ MENÜ</button>
+  
+  <!-- MENÜ -->
+  <nav class="menu" id="menu">
+    <button class="kapatButon" id="kapatButon">✕</button>
+    <a href="#" onclick="window.location.reload()">Anasayfa</a>
+    <a href="#" onclick="alert('Hakkımızda: PDF Arşivi Yönetim Sistemi')">Hakkımızda</a>
+    <a href="#" onclick="alert('İletişim: info@example.com')">İletişim</a>
+  </nav>
+  
   <main class="sayfa">
     <div class="ust">
       <img src="img/logo.png" alt="Logo" class="logo">
       <h1>Bilgisayar Mühendisliği PDF Arşivi</h1>
+    </div>
+
+    <!-- SLİDER -->
+    <div class="slider">
+      <div class="slide acik-slide">
+        <div class="slide-content">
+          <h2>Hoşgeldiniz</h2>
+          <p>Bilgisayar Mühendisliği PDF Arşivine hoşgeldiniz</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-content">
+          <h2>Binlerce PDF</h2>
+          <p>Tüm dersleriniz için PDF'ler kolayca bulunabilir</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-content">
+          <h2>Hızlı Arama</h2>
+          <p>Aradığınız PDF'i saniyeler içinde bulun</p>
+        </div>
+      </div>
+      <button class="slider-prev" id="sliderPrev">❮</button>
+      <button class="slider-next" id="sliderNext">❯</button>
     </div>
 
     <input id="arama" type="search" placeholder="Ders veya PDF ara">
@@ -28,6 +63,28 @@
       <div id="pdfListe" class="pdfGrid"></div>
     </section>
   </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>İletişim Bilgileri</h3>
+        <p><strong>Emre Bircan</strong><br>
+        📧 <a href="mailto:2023123034@cumhuriyet.edu.tr">2023123034@cumhuriyet.edu.tr</a></p>
+        <p><strong>Burak Karakız</strong><br>
+        📧 <a href="mailto:2023123288@gmail.com">2023123288@gmail.com</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Hakkında</h3>
+        <p>Bilgisayar Mühendisliği Bölümü<br>
+        PDF Arşivi Yönetim Sistemi</p>
+      </div>
+      <div class="footer-section">
+        <h3>Telif Hakkı</h3>
+        <p>&copy; 2026 Tüm Hakları Saklıdır.</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="script.js"></script>
