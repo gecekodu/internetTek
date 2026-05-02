@@ -4,54 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bilgisayar Mühendisliği PDF Arşivi</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- MENÜ BUTON -->
-  <button class="menuButon" id="menuButon">☰ MENÜ</button>
-  
-  <!-- MENÜ -->
-  <nav class="menu" id="menu">
-    <button class="kapatButon" id="kapatButon">✕</button>
-    <a href="#" onclick="window.location.reload()">Anasayfa</a>
-    <a href="#" onclick="alert('Hakkımızda: PDF Arşivi Yönetim Sistemi')">Hakkımızda</a>
-    <a href="#" onclick="alert('İletişim: info@example.com')">İletişim</a>
-  </nav>
+  <header class="navbar">
+    <div class="navSol">
+      <img src="img/logo.png" alt="Logo" class="navLogo">
+      <div class="navBaslikBlok">
+        <p class="navEtiket">PDF Arşivi</p>
+        <h1 class="navBaslik">Bilgisayar Mühendisliği</h1>
+      </div>
+    </div>
+
+    <form class="navAramaWrap" id="aramaForm">
+      <div class="aramaKutusu">
+        <span class="aramaIcon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 21l-4.35-4.35" stroke="#0b1324" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="11" cy="11" r="6" stroke="#0b1324" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <input id="arama" type="search" placeholder="Ders, PDF adı veya konu ara" aria-label="Arama">
+        <span id="aramaYukleniyor" class="aramaYukleniyor" hidden aria-hidden="true"></span>
+      </div>
+      <button type="submit" class="aramaButon visually-hidden" aria-label="Ara"></button>
+    </form>
+  </header>
   
   <main class="sayfa">
-    <div class="ust">
-      <img src="img/logo.png" alt="Logo" class="logo">
-      <h1>Bilgisayar Mühendisliği PDF Arşivi</h1>
-    </div>
+    <section class="hero">
+      <h2>PDF Arşivi</h2>
+      <p>Ders seçebilir veya üstteki arama kutusuna bir konu yazabilirsin. Arama, PDF adlarını ve PDF içindeki metni kontrol eder.</p>
+    </section>
 
-    <!-- SLİDER -->
-    <div class="slider">
-      <div class="slide acik-slide">
-        <div class="slide-content">
-          <h2>Hoşgeldiniz</h2>
-          <p>Bilgisayar Mühendisliği PDF Arşivine hoşgeldiniz</p>
-        </div>
-      </div>
-      <div class="slide">
-        <div class="slide-content">
-          <h2>Binlerce PDF</h2>
-          <p>Tüm dersleriniz için PDF'ler kolayca bulunabilir</p>
-        </div>
-      </div>
-      <div class="slide">
-        <div class="slide-content">
-          <h2>Hızlı Arama</h2>
-          <p>Aradığınız PDF'i saniyeler içinde bulun</p>
-        </div>
-      </div>
-      <button class="slider-prev" id="sliderPrev">❮</button>
-      <button class="slider-next" id="sliderNext">❯</button>
+    <div class="icerikBaslik">
+      <h2>Dersler</h2>
+      <p id="durumMetni">Bir ders seçiniz</p>
     </div>
-
-    <input id="arama" type="search" placeholder="Ders veya PDF ara">
 
     <section>
-      <h2>Dersler</h2>
       <div id="dersler" class="dersler"></div>
     </section>
 
@@ -66,26 +58,36 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>İletişim Bilgileri</h3>
-        <p><strong>Emre Bircan</strong><br>
-        📧 <a href="mailto:2023123034@cumhuriyet.edu.tr">2023123034@cumhuriyet.edu.tr</a></p>
-        <p><strong>Burak Karakız</strong><br>
-        📧 <a href="mailto:2023123288@cumhuriyet.edu.tr">2023123288@cumhuriyet.edu.tr</a></p>
-      </div>
-      <div class="footer-section">
-        <h3>Hakkında</h3>
-        <p>Bilgisayar Mühendisliği Bölümü<br>
-        PDF Arşivi Yönetim Sistemi</p>
-      </div>
-      <div class="footer-section">
-        <h3>Telif Hakkı</h3>
-        <p>&copy; 2026 Tüm Hakları Saklıdır.</p>
+    <div class="footer-wrap">
+      <div class="footer-ust">
+        <div class="footer-marka">
+          <p class="footer-etiket">PDF Arşivi</p>
+          <h3>Bilgisayar Mühendisliği</h3>
+          <p>Ders notları ve PDF'ler için sade, hızlı ve düzenli bir arşiv.</p>
+        </div>
+        <div class="footer-satir">
+          <div>
+            <span class="footer-kucuk-baslik">İletişim</span>
+            <p>Emre Bircan</p>
+            <p>2023123034@cumhuriyet.edu.tr</p>
+            <p>Burak Karakız</p>
+            <p>2023123288@cumhuriyet.edu.tr</p>
+          </div>
+          <div>
+            <span class="footer-kucuk-baslik">Hakkında</span>
+            <p>Bilgisayar Mühendisliği Bölümü</p>
+            <p>PDF Arşivi Yönetim Sistemi</p>
+          </div>
+          <div>
+            <span class="footer-kucuk-baslik">Telif</span>
+            <p>&copy; 2026 Tüm Hakları Saklıdır.</p>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="script.js"></script>
 </body>

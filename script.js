@@ -5,7 +5,13 @@ const dersler = [
       { ad: "01 - Ders Detayları", dosya: "pdf/Algoritma ve Programlama/01 - Ders Detayları.pdf" },
       { ad: "02 - TemelKavramlar ve Algoritmaya Giriş", dosya: "pdf/Algoritma ve Programlama/02 - TemelKavramlar ve Algoritmaya Giriş.pdf" },
       { ad: "03 - SatırKod - AkışDiyagramları", dosya: "pdf/Algoritma ve Programlama/03 - SatırKod - AkışDiyagramları.pdf" },
-      { ad: "04 - SatırAlgoritmaAkışDiaygramları-Örnekler", dosya: "pdf/Algoritma ve Programlama/04 - SatırAlgoritmaAkışDiaygramları-Örnekler.pdf" }
+      { ad: "04 - SatırAlgoritmaAkışDiaygramları-Örnekler", dosya: "pdf/Algoritma ve Programlama/04 - SatırAlgoritmaAkışDiaygramları-Örnekler.pdf" },
+      { ad: "05 - SözdeKod", dosya: "pdf/Algoritma ve Programlama/05 - SözdeKod.pdf" },
+      { ad: "06 - Örnekler", dosya: "pdf/Algoritma ve Programlama/06 - Örnekler.pdf" },
+      { ad: "07 - IntroductionToJava", dosya: "pdf/Algoritma ve Programlama/07-IntroductionToJava.pdf" },
+      { ad: "07 - UygulamaSoruları", dosya: "pdf/Algoritma ve Programlama/07-UygulamaSoruları.pdf" },
+      { ad: "08 - JavaConditions", dosya: "pdf/Algoritma ve Programlama/08-JavaConditions.pdf" },
+      { ad: "08 - UygulamaSoruları", dosya: "pdf/Algoritma ve Programlama/08-UygulamaSoruları.pdf" }
     ]
   },
   {
@@ -14,7 +20,11 @@ const dersler = [
       { ad: "B1", dosya: "pdf/İşletim Sistemleri/B1.pdf" },
       { ad: "B2", dosya: "pdf/İşletim Sistemleri/B2.pdf" },
       { ad: "B3", dosya: "pdf/İşletim Sistemleri/B3.pdf" },
-      { ad: "B4", dosya: "pdf/İşletim Sistemleri/B4.pdf" }
+      { ad: "B4", dosya: "pdf/İşletim Sistemleri/B4.pdf" },
+      { ad: "B5", dosya: "pdf/İşletim Sistemleri/B5.pdf" },
+      { ad: "B6", dosya: "pdf/İşletim Sistemleri/B6.pdf" },
+      { ad: "B7", dosya: "pdf/İşletim Sistemleri/B7.pdf" },
+      { ad: "B8", dosya: "pdf/İşletim Sistemleri/B8.pdf" }
     ]
   },
   {
@@ -34,122 +44,280 @@ const dersler = [
       { ad: "1.3 - Kalite Nitelikleri için Tasarım", dosya: "pdf/Nesne Tabanlı Analiz ve Tasarım/1.3-Kalite Nitelikleri için Tasarım.pdf" },
       { ad: "2 - Nesne tabanlı Modelleme", dosya: "pdf/Nesne Tabanlı Analiz ve Tasarım/2.Nesne tabanlı Modelleme.pdf" }
     ]
+  },
+  {
+    ad: "Linear Cebir",
+    pdfler: [
+      { ad: "Book - Essential MATLAB", dosya: "pdf/Linear Cebir/Book Essential MATLAB for Engineers and Scientists.pdf" },
+      { ad: "Hafta 1", dosya: "pdf/Linear Cebir/Hafta 1 .pdf" },
+      { ad: "Hafta 2", dosya: "pdf/Linear Cebir/Hafta 2.pdf" },
+      { ad: "Hafta 3", dosya: "pdf/Linear Cebir/Hafta 3.pdf" },
+      { ad: "Hafta 4", dosya: "pdf/Linear Cebir/Hafta 4.pdf" },
+      { ad: "Hafta 5", dosya: "pdf/Linear Cebir/Hafta 5.pdf" },
+      { ad: "Hafta 6", dosya: "pdf/Linear Cebir/Hafta 6.pdf" },
+      { ad: "Hafta 7", dosya: "pdf/Linear Cebir/hafta 7.pdf" },
+      { ad: "Hafta 9", dosya: "pdf/Linear Cebir/Hafta 9.pdf" },
+      { ad: "Hafta 10", dosya: "pdf/Linear Cebir/Hafta 10.pdf" },
+      { ad: "Hafta 11", dosya: "pdf/Linear Cebir/Hafta 11.pdf" }
+    ]
+  },
+  {
+    ad: "Veri Yapıları",
+    pdfler: [
+      { ad: "1 - Bilgisayarın Temelleri", dosya: "pdf/Veri Yapıları/1-Bilgisayarın Temelleri ve Veri Yapılarına Giriş.pdf" },
+      { ad: "2 - Java Temelleri", dosya: "pdf/Veri Yapıları/2-Java Temelleri.pdf" },
+      { ad: "2 - OOP", dosya: "pdf/Veri Yapıları/2-OOP.pdf" },
+      { ad: "3 - Arrays", dosya: "pdf/Veri Yapıları/3-Arrays.pdf" },
+      { ad: "4 - Elementary Sorting", dosya: "pdf/Veri Yapıları/4-ElementarySortingAlgorithms.pdf" },
+      { ad: "5 - Linked Lists", dosya: "pdf/Veri Yapıları/5-LinkedLists.pdf" },
+      { ad: "6 - Stack & Queue", dosya: "pdf/Veri Yapıları/6-Stack&Queue.pdf" },
+      { ad: "7 - Recursive", dosya: "pdf/Veri Yapıları/7-Recursive.pdf" },
+      { ad: "8 - Advanced Sorting", dosya: "pdf/Veri Yapıları/8-Advanced Sorting.pdf" },
+      { ad: "9 - Binary Trees", dosya: "pdf/Veri Yapıları/9-BinaryTrees.pdf" },
+      { ad: "10 - Balancing A Tree", dosya: "pdf/Veri Yapıları/10-BalancingATree.pdf" },
+      { ad: "Hash Table", dosya: "pdf/Veri Yapıları/Hash Table.pdf" },
+      { ad: "Hash Table - O(1)", dosya: "pdf/Veri Yapıları/Hash_Table_O1_Karmaşıklığı_Sanatı.pdf" }
+    ]
+  },
+  {
+    ad: "İSG-II",
+    pdfler: [
+      { ad: "TMB304 H01D1-1", dosya: "pdf/İSG-II/TMB304 H01D1-1.pdf" }
+    ]
   }
 ];
-
-
-/*
-  Bu kısım AI yardımıyla yazıldı.
-  PDF sayfalarını masaüstünde açık kitap gibi,
-  küçük ekranda ise tek sayfa gibi göstermek için kullanılıyor.
-  Selamunaleyküm
-*/
-
-// MENÜ KONTROLÜ
-const menuButon = document.getElementById("menuButon");
-const menu = document.getElementById("menu");
-const kapatButon = document.getElementById("kapatButon");
-
-menuButon.addEventListener("click", function() {
-  menu.classList.add("acik");
-});
-
-kapatButon.addEventListener("click", function() {
-  menu.classList.remove("acik");
-});
-
-// Menü dışında tıklandığında menüyü kapat
-document.addEventListener("click", function(event) {
-  if (!menu.contains(event.target) && !menuButon.contains(event.target)) {
-    menu.classList.remove("acik");
-  }
-});
-
-// SLİDER KONTROLÜ
-const sliderPrev = document.getElementById("sliderPrev");
-const sliderNext = document.getElementById("sliderNext");
-const slides = document.querySelectorAll(".slide");
-let slideIndex = 0;
-
-function sliderGöster(index) {
-  // Tüm slide'ları gizle
-  slides.forEach(slide => slide.classList.remove("acik-slide"));
-  
-  // Seçilen slide'ı göster
-  slides[index].classList.add("acik-slide");
-}
-
-sliderNext.addEventListener("click", function() {
-  slideIndex = (slideIndex + 1) % slides.length;
-  sliderGöster(slideIndex);
-});
-
-sliderPrev.addEventListener("click", function() {
-  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-  sliderGöster(slideIndex);
-});
-
-// Otomatik slider (5 saniye)
-setInterval(function() {
-  slideIndex = (slideIndex + 1) % slides.length;
-  sliderGöster(slideIndex);
-}, 5000);
 
 const derslerAlan = document.getElementById("dersler");
 const seciliDers = document.getElementById("seciliDers");
 const pdfListe = document.getElementById("pdfListe");
 const topluIndir = document.getElementById("topluIndir");
 const arama = document.getElementById("arama");
+const durumMetni = document.getElementById("durumMetni");
+const aramaForm = document.getElementById("aramaForm");
+const aramaYukleniyor = document.getElementById("aramaYukleniyor");
 
-let aktifDers = null;
+let aktifDers = dersler[0];
+let aramaZamani = 0;
+let aktifAramaToken = 0;
+const pdfDizinleri = {};
 
-function pdfleriCiz(pdfler) {
-  pdfListe.innerHTML = "";
-
-  pdfler.forEach(function (pdf) {
-    const kart = document.createElement("article");
-    const baslik = document.createElement("h3");
-    const iframe = document.createElement("iframe");
-    const link = document.createElement("a");
-
-    kart.className = "pdfKart";
-
-    baslik.textContent = pdf.ad;
-
-    iframe.src = pdf.dosya;
-    iframe.title = pdf.ad;
-
-    link.textContent = "Yeni sekmede aç";
-    link.href = pdf.dosya;
-    link.target = "_blank";
-
-    kart.appendChild(baslik);
-    kart.appendChild(iframe);
-    kart.appendChild(link);
-    pdfListe.appendChild(kart);
-  });
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 }
 
-function aktifDersiAyarla(ders) {
-  aktifDers = ders;
-  seciliDers.textContent = ders ? ders.ad + " PDF'leri" : "Bir ders seçiniz";
-  topluIndir.hidden = !ders;
-  pdfleriCiz(ders ? ders.pdfler : []);
-}
-
-function dersleriCiz(liste) {
+function dersleriCiz() {
   derslerAlan.innerHTML = "";
 
-  liste.forEach(function (ders) {
-    const btn = document.createElement("button");
+  dersler.forEach(function (ders) {
+    const buton = document.createElement("button");
+    buton.type = "button";
+    buton.className = "dersButon";
+    buton.textContent = ders.ad;
 
-    btn.textContent = ders.ad;
-    btn.onclick = function () {
-      aktifDersiAyarla(ders);
+    if (aktifDers && aktifDers.ad === ders.ad) {
+      buton.classList.add("aktif");
+    }
+
+    buton.onclick = function () {
+      aktifDers = ders;
+      arama.value = "";
+      dersleriCiz();
+      pdfleriGoster(ders.pdfler, ders.ad);
     };
 
-    derslerAlan.appendChild(btn);
+    derslerAlan.appendChild(buton);
   });
+}
+
+function pdfKartiOlustur(pdf) {
+  const kart = document.createElement("article");
+  const baslik = document.createElement("h3");
+  const iframe = document.createElement("iframe");
+  const link = document.createElement("a");
+  const bilgi = document.createElement("p");
+
+  const hedef = pdf.eslesme
+    ? pdf.dosya + "#page=" + pdf.eslesme.sayfaNo
+    : pdf.dosya;
+
+  kart.className = "pdfKart";
+  baslik.textContent = pdf.baslik;
+  iframe.src = hedef;
+  iframe.title = pdf.baslik;
+  link.href = hedef;
+  link.target = "_blank";
+  link.textContent = pdf.eslesme ? "Eşleşen sayfayı aç" : "Yeni sekmede aç";
+
+  kart.appendChild(baslik);
+  kart.appendChild(iframe);
+  kart.appendChild(link);
+
+  if (pdf.eslesme) {
+    bilgi.className = "eslesmeBilgi";
+    bilgi.textContent = "Bulundu: Sayfa " + pdf.eslesme.sayfaNo + " | " + pdf.eslesme.parca;
+    kart.appendChild(bilgi);
+  }
+
+  return kart;
+}
+
+function pdfleriGoster(pdfler, baslikMetni) {
+  pdfListe.innerHTML = "";
+  seciliDers.textContent = baslikMetni === "Arama sonuçları" ? baslikMetni : (baslikMetni ? baslikMetni + " PDF'leri" : "Bir ders seçiniz");
+  durumMetni.textContent = baslikMetni === "Arama sonuçları" ? "Konu araması yapılıyor" : (baslikMetni ? baslikMetni + " seçili" : "Bir ders seçiniz");
+  topluIndir.hidden = baslikMetni !== aktifDers.ad || pdfler.length === 0;
+
+  if (pdfler.length === 0) {
+    const bosMesaj = document.createElement("p");
+    bosMesaj.textContent = "Sonuç bulunamadı.";
+    pdfListe.appendChild(bosMesaj);
+    return;
+  }
+
+  pdfler.forEach(function (pdf) {
+    pdfListe.appendChild(pdfKartiOlustur(pdf));
+  });
+}
+
+function aramaYukleniyorGoster(goster) {
+  aramaYukleniyor.hidden = !goster;
+  aramaForm.setAttribute("aria-busy", goster ? "true" : "false");
+}
+
+function tumPdfleriAl() {
+  const liste = [];
+
+  dersler.forEach(function (ders) {
+    ders.pdfler.forEach(function (pdf) {
+      liste.push({
+        ad: pdf.ad,
+        baslik: ders.ad + " - " + pdf.ad,
+        dosya: pdf.dosya,
+        dersAdi: ders.ad
+      });
+    });
+  });
+
+  return liste;
+}
+
+async function pdfMetniniDizinle(dosya) {
+  if (pdfDizinleri[dosya]) {
+    return pdfDizinleri[dosya];
+  }
+
+  if (!window.pdfjsLib) {
+    pdfDizinleri[dosya] = { tumMetin: "", sayfalar: [] };
+    return pdfDizinleri[dosya];
+  }
+
+  try {
+    const belge = await pdfjsLib.getDocument(dosya).promise;
+    const sayfalar = [];
+    let tumMetin = "";
+
+    for (let sayfaNo = 1; sayfaNo <= belge.numPages; sayfaNo++) {
+      const sayfa = await belge.getPage(sayfaNo);
+      const yazi = await sayfa.getTextContent();
+      const sayfaMetni = yazi.items.map(function (item) { return item.str; }).join(" ");
+      const kucukMetin = sayfaMetni.toLowerCase();
+      sayfalar.push({ no: sayfaNo, metin: kucukMetin });
+      tumMetin += kucukMetin + " ";
+    }
+
+    pdfDizinleri[dosya] = { tumMetin: tumMetin, sayfalar: sayfalar };
+    return pdfDizinleri[dosya];
+  } catch (hata) {
+    pdfDizinleri[dosya] = { tumMetin: "", sayfalar: [] };
+    return pdfDizinleri[dosya];
+  }
+}
+
+function eslesmeParcasiBul(sayfaMetni, arananMetin) {
+  const konum = sayfaMetni.indexOf(arananMetin);
+
+  if (konum === -1) {
+    return "İlgili ifade bu sayfada bulundu.";
+  }
+
+  const baslangic = Math.max(0, konum - 35);
+  const bitis = Math.min(sayfaMetni.length, konum + arananMetin.length + 35);
+  let parca = sayfaMetni.slice(baslangic, bitis).replace(/\s+/g, " ").trim();
+
+  if (baslangic > 0) {
+    parca = "..." + parca;
+  }
+
+  if (bitis < sayfaMetni.length) {
+    parca += "...";
+  }
+
+  return parca;
+}
+
+function ilkSayfaEslesmesiniBul(pdfDizini, arananMetin) {
+  for (const sayfa of pdfDizini.sayfalar) {
+    if (sayfa.metin.includes(arananMetin)) {
+      return {
+        sayfaNo: sayfa.no,
+        parca: eslesmeParcasiBul(sayfa.metin, arananMetin)
+      };
+    }
+  }
+
+  return null;
+}
+
+async function ara() {
+  const metin = arama.value.toLowerCase().trim();
+  const islemNo = ++aramaZamani;
+  aktifAramaToken = islemNo;
+
+  if (!metin) {
+    aramaYukleniyorGoster(false);
+    pdfleriGoster(aktifDers.pdfler.map(function (pdf) {
+      return {
+        ad: pdf.ad,
+        baslik: pdf.ad,
+        dosya: pdf.dosya,
+        dersAdi: aktifDers.ad
+      };
+    }), aktifDers.ad);
+    return;
+  }
+
+  aramaYukleniyorGoster(true);
+
+  const tumPdfler = tumPdfleriAl();
+  const sonuc = [];
+
+  for (const pdf of tumPdfler) {
+    const baslikUyuyor = pdf.baslik.toLowerCase().includes(metin) || pdf.dersAdi.toLowerCase().includes(metin) || pdf.ad.toLowerCase().includes(metin);
+
+    if (baslikUyuyor) {
+      sonuc.push(pdf);
+      continue;
+    }
+
+    const pdfDizini = await pdfMetniniDizinle(pdf.dosya);
+    if (islemNo !== aramaZamani) {
+      return;
+    }
+
+    if (pdfDizini.tumMetin.includes(metin)) {
+      const eslesme = ilkSayfaEslesmesiniBul(pdfDizini, metin);
+      sonuc.push(Object.assign({}, pdf, { eslesme: eslesme }));
+    }
+  }
+
+  if (islemNo !== aramaZamani) {
+    return;
+  }
+
+  pdfleriGoster(sonuc, "Arama sonuçları");
+  if (aktifAramaToken === islemNo) {
+    aramaYukleniyorGoster(false);
+  }
 }
 
 async function zipIndir() {
@@ -167,41 +335,38 @@ async function zipIndir() {
   }
 
   const zipBlob = await zip.generateAsync({ type: "blob" });
-  const zipAdi = (aktifDers.ad || "pdfler") + ".zip";
   const zipUrl = URL.createObjectURL(zipBlob);
   const a = document.createElement("a");
 
   a.href = zipUrl;
-  a.download = zipAdi;
+  a.download = (aktifDers.ad || "pdfler") + ".zip";
   document.body.appendChild(a);
   a.click();
   a.remove();
   URL.revokeObjectURL(zipUrl);
 }
 
-function aramayiUygula() {
-  const metin = arama.value.toLowerCase().trim();
-  const filtreli = dersler.filter(function (ders) {
-    if (ders.ad.toLowerCase().indexOf(metin) !== -1) {
-      return true;
-    }
+let aramaBekletici = 0;
+arama.addEventListener("input", function () {
+  clearTimeout(aramaBekletici);
+  aramaBekletici = setTimeout(function () {
+    ara();
+  }, 300);
+});
 
-    return ders.pdfler.some(function (pdf) {
-      return pdf.ad.toLowerCase().indexOf(metin) !== -1;
-    });
-  });
-
-  dersleriCiz(filtreli);
-
-  if (filtreli.length > 0) {
-    aktifDersiAyarla(filtreli[0]);
-  } else {
-    aktifDersiAyarla(null);
-  }
-}
+aramaForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  clearTimeout(aramaBekletici);
+  ara();
+});
 
 topluIndir.onclick = zipIndir;
-arama.oninput = aramayiUygula;
-
-dersleriCiz(dersler);
-aktifDersiAyarla(dersler[0]);
+dersleriCiz();
+pdfleriGoster(aktifDers.pdfler.map(function (pdf) {
+  return {
+    ad: pdf.ad,
+    baslik: pdf.ad,
+    dosya: pdf.dosya,
+    dersAdi: aktifDers.ad
+  };
+}), aktifDers.ad);
