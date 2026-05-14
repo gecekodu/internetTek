@@ -209,6 +209,36 @@ body {
   margin-bottom: 10px;
 }
 
+.uploadBar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.uploadBtn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #0b1324;
+  color: #fff;
+  cursor: pointer;
+}
+
+.dropzone {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #4b5563;
+}
+
+.dropzone.dragover {
+  border-color: #38bdf8;
+  background: #f1fbff;
+}
+
 .dersler {
   display: flex;
   flex-wrap: wrap;

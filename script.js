@@ -87,6 +87,9 @@ const dersler = [
   }
 ];
 
+// Yüklenen (lokal) PDF'ler
+const uploadedFiles = [];
+
 const derslerAlan = document.getElementById("dersler");
 const seciliDers = document.getElementById("seciliDers");
 const pdfListe = document.getElementById("pdfListe");
@@ -201,18 +204,35 @@ function tumPdfleriAl() {
   return liste;
 }
 
+function tumYuklenenlerListesi() {
+  return uploadedFiles.map(function (u) {
+    return {
+      ad: u.name,
+      baslik: "Yüklenen - " + u.name,
+      dosya: { url: u.url, file: u.file },
+      dersAdi: "Yüklenenler"
+    };
+  });
+}
+
 async function pdfMetniniDizinle(dosya) {
-  if (pdfDizinleri[dosya]) {
-    return pdfDizinleri[dosya];
-  }
+  const key = (typeof dosya === "object" && dosya.url) ? dosya.url : dosya;
+  if (pdfDizinleri[key]) return pdfDizinleri[key];
 
   if (!window.pdfjsLib) {
-    pdfDizinleri[dosya] = { tumMetin: "", sayfalar: [] };
-    return pdfDizinleri[dosya];
+    pdfDizinleri[key] = { tumMetin: "", sayfalar: [] };
+    return pdfDizinleri[key];
   }
 
   try {
-    const belge = await pdfjsLib.getDocument(dosya).promise;
+    let belge;
+    if (typeof dosya === "object" && dosya.file) {
+      const buffer = await dosya.file.arrayBuffer();
+      belge = await pdfjsLib.getDocument({ data: buffer }).promise;
+    } else {
+      belge = await pdfjsLib.getDocument(dosya).promise;
+    }
+
     const sayfalar = [];
     let tumMetin = "";
 
@@ -225,11 +245,11 @@ async function pdfMetniniDizinle(dosya) {
       tumMetin += kucukMetin + " ";
     }
 
-    pdfDizinleri[dosya] = { tumMetin: tumMetin, sayfalar: sayfalar };
-    return pdfDizinleri[dosya];
+    pdfDizinleri[key] = { tumMetin: tumMetin, sayfalar: sayfalar };
+    return pdfDizinleri[key];
   } catch (hata) {
-    pdfDizinleri[dosya] = { tumMetin: "", sayfalar: [] };
-    return pdfDizinleri[dosya];
+    pdfDizinleri[key] = { tumMetin: "", sayfalar: [] };
+    return pdfDizinleri[key];
   }
 }
 
@@ -285,39 +305,141 @@ async function ara() {
     }), aktifDers.ad);
     return;
   }
-
   aramaYukleniyorGoster(true);
 
   const tumPdfler = tumPdfleriAl();
   const sonuc = [];
 
-  for (const pdf of tumPdfler) {
-    const baslikUyuyor = pdf.baslik.toLowerCase().includes(metin) || pdf.dersAdi.toLowerCase().includes(metin) || pdf.ad.toLowerCase().includes(metin);
+  try {
+    for (const pdf of tumPdfler) {
+      const baslikUyuyor = pdf.baslik.toLowerCase().includes(metin) || pdf.dersAdi.toLowerCase().includes(metin) || pdf.ad.toLowerCase().includes(metin);
 
-    if (baslikUyuyor) {
-      sonuc.push(pdf);
-      continue;
+      if (baslikUyuyor) {
+        sonuc.push(pdf);
+        continue;
+      }
+
+      const pdfDizini = await pdfMetniniDizinle(pdf.dosya);
+      if (islemNo !== aramaZamani) {
+        return;
+      }
+
+      if (pdfDizini.tumMetin.includes(metin)) {
+        const eslesme = ilkSayfaEslesmesiniBul(pdfDizini, metin);
+        sonuc.push(Object.assign({}, pdf, { eslesme: eslesme }));
+      }
     }
 
-    const pdfDizini = await pdfMetniniDizinle(pdf.dosya);
     if (islemNo !== aramaZamani) {
       return;
     }
 
-    if (pdfDizini.tumMetin.includes(metin)) {
-      const eslesme = ilkSayfaEslesmesiniBul(pdfDizini, metin);
-      sonuc.push(Object.assign({}, pdf, { eslesme: eslesme }));
-    }
+    pdfleriGoster(sonuc, "Arama sonuçları");
+  } finally {
+    if (aktifAramaToken === islemNo) aramaYukleniyorGoster(false);
+  }
+}
+
+// Yükleme işlemleri
+const pdfUpload = document.getElementById("pdfUpload");
+const chooseFiles = document.getElementById("chooseFiles");
+const dropzone = document.getElementById("dropzone");
+
+chooseFiles.addEventListener("click", function () {
+  pdfUpload.click();
+});
+
+pdfUpload.addEventListener("change", function (e) {
+  processFiles(e.target.files);
+  pdfUpload.value = "";
+});
+
+dropzone.addEventListener("dragover", function (e) {
+  e.preventDefault();
+  dropzone.classList.add("dragover");
+});
+
+dropzone.addEventListener("dragleave", function () {
+  dropzone.classList.remove("dragover");
+});
+
+dropzone.addEventListener("drop", function (e) {
+  e.preventDefault();
+  dropzone.classList.remove("dragover");
+  if (e.dataTransfer && e.dataTransfer.files) {
+    processFiles(e.dataTransfer.files);
+  }
+});
+
+async function processFiles(files) {
+  const list = Array.from(files).filter(f => f.type === "application/pdf");
+  if (list.length === 0) return;
+
+  for (const file of list) {
+    const url = URL.createObjectURL(file);
+    uploadedFiles.push({ name: file.name, file: file, url: url });
+    // Önden dizinle (isteğe bağlı)
+    pdfMetniniDizinle({ url: url, file: file }).catch(() => {});
   }
 
-  if (islemNo !== aramaZamani) {
-    return;
+  // Hızlıca yüklenenleri göster
+  pdfleriGoster(tumYuklenenlerListesi(), "Yüklenen PDF'ler");
+}
+
+// Güncelle: tüm PDF listesini döndürür (sabit + yüklenenler)
+function tumPdfleriAl() {
+  const liste = [];
+
+  dersler.forEach(function (ders) {
+    ders.pdfler.forEach(function (pdf) {
+      liste.push({
+        ad: pdf.ad,
+        baslik: ders.ad + " - " + pdf.ad,
+        dosya: pdf.dosya,
+        dersAdi: ders.ad
+      });
+    });
+  });
+
+  // yüklenenleri ekle
+  liste.push(...tumYuklenenlerListesi());
+  return liste;
+}
+
+// PDF kart oluştururken dosya objesini ele al
+function pdfKartiOlustur(pdf) {
+  const kart = document.createElement("article");
+  const baslik = document.createElement("h3");
+  const iframe = document.createElement("iframe");
+  const link = document.createElement("a");
+  const bilgi = document.createElement("p");
+
+  let hedef;
+  if (typeof pdf.dosya === "object" && pdf.dosya.url) {
+    hedef = pdf.dosya.url + (pdf.eslesme ? "#page=" + pdf.eslesme.sayfaNo : "");
+  } else {
+    hedef = pdf.dosya + (pdf.eslesme ? "#page=" + pdf.eslesme.sayfaNo : "");
   }
 
-  pdfleriGoster(sonuc, "Arama sonuçları");
-  if (aktifAramaToken === islemNo) {
-    aramaYukleniyorGoster(false);
+  kart.className = "pdfKart";
+  baslik.textContent = pdf.baslik || pdf.ad;
+  iframe.src = hedef;
+  iframe.title = pdf.baslik || pdf.ad;
+  link.href = hedef;
+  link.target = "_blank";
+  link.textContent = pdf.eslesme ? "Eşleşen sayfayı aç" : "Yeni sekmede aç";
+
+  kart.appendChild(baslik);
+  kart.appendChild(iframe);
+  kart.appendChild(link);
+
+  if (pdf.eslesme) {
+    bilgi.className = "eslesmeBilgi";
+    bilgi.textContent = "Bulundu: Sayfa " + pdf.eslesme.sayfaNo + " | " + pdf.eslesme.parca;
+    kart.appendChild(bilgi);
   }
+
+  return kart;
 }
 
 async function zipIndir() {
